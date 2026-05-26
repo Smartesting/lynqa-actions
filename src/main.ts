@@ -59,11 +59,13 @@ export async function run() {
         if (shouldStop) break
 
         const test: Test & { name: string } = content.tests[i]
-        const label = `${path.basename(file)}#${i + 1}:${replacePlaceholders(test.name) ?? 'unnamed'}`
+        const name = replacePlaceholders(test.name) ?? 'Unnamed'
+        const label = `${path.basename(file)}#${i + 1}: ${name}`
 
         try {
           const testRunId = await client.addTestRun({
-            url: content.url,
+            url: replacePlaceholders(content.url),
+            name,
             steps: test.steps.map(({ action, expectedResult }) => {
               return {
                 action: replacePlaceholders(action),

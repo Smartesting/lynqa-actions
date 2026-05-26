@@ -176,6 +176,7 @@ describe('GitHub Action run()', () => {
 
       expect(addTestRunMock).toHaveBeenCalledWith({
         url: 'http://demo',
+        name: "Recherche d'un bicycle",
         steps: [
           {
             action: 'Tapez bicycle dans le champ et cliquer sur {{ env.UNKNOWN }}',
